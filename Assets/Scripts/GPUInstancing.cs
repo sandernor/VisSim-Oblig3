@@ -20,11 +20,11 @@ public class GPUInstancing : MonoBehaviour
     private int lineCount = 0;
     private List<Vector3> vertexArray;
     private Vector3 v;
-    private float xMax = 583200f;
-    private float zMax = 6673100f;
+    private float xMax = 583600f;
+    private float zMax = 6673700f;
     private float yMax = 500f;
     private int numVertices;
-    private int multi = 200;
+    private int multi = 150;
     private float scale = 3f;
 
     private void Awake()
@@ -47,14 +47,14 @@ public class GPUInstancing : MonoBehaviour
 
     private void FileToLines()
     {
-        System.IO.StreamReader file = new System.IO.StreamReader(Application.dataPath + "/esketit.txt");
+        System.IO.StreamReader file = new System.IO.StreamReader(Application.dataPath + "/merged.txt");
 
         while (file.ReadLine() != null)
         {
             lineCount += 1;
         }
 
-        System.IO.StreamReader file2 = new System.IO.StreamReader(Application.dataPath + "/esketit.txt");
+        System.IO.StreamReader file2 = new System.IO.StreamReader(Application.dataPath + "/merged.txt");
 
         for (int i = 0; i < lineCount; i++)
         {
@@ -82,14 +82,6 @@ public class GPUInstancing : MonoBehaviour
 
     private void Update()
     {
-        //for (int i = 1; i < batches + 1; i++)
-        //{
-        //    for (var j = (_positions.Length / batches) * i - 1; j < (_positions.Length / batches) * i; j++)
-        //    {
-        //        _matrices[i].SetTRS(_positions[i], Quaternion.identity, new Vector3(0.2f, 0.2f, 0.2f));
-        //        Graphics.RenderMeshInstanced(_rp, _mesh, 0, _matrices);
-        //    }
-        //}
         for (var i = 0; i < _positions.Length; i++)
         {
             _matrices[i].SetTRS(_positions[i], Quaternion.identity, new Vector3(scale, scale, scale));
